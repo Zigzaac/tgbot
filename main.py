@@ -27,9 +27,12 @@ async def start(message : types.Message):
 
 
 
-@dp.message_handler()
+@dp.message_handler(regexp='^[а-яА-Я]*$')
 async def start(message : types.Message):
     await bot.send_message(message.from_user.id, f"{message.text} выберите что вы хотите сделать?", reply_markup="choosebut", parse_mode='HTML')
+
+
+
 
 
 
