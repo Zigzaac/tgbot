@@ -11,7 +11,7 @@ logging.basicConfig(level=logging.INFO)
 # Initialize bot and dispatcher
 bot = Bot(token=API_TOKEN)
 dp = Dispatcher(bot)
-
+info = []
 
 choosebut = ReplyKeyboardMarkup(resize_keyboard=True)
 but1 = 'Рекомендовать клиента'
@@ -29,14 +29,11 @@ async def start(message : types.Message):
 
 @dp.message_handler(regexp='^[а-яА-Я]*$')
 async def start(message : types.Message):
-    await bot.send_message(message.from_user.id, f"{message.text} выберите что вы хотите сделать?", reply_markup="choosebut", parse_mode='HTML')
+    name = message.text()
+    info.append(name)
+    await bot.send_message(message.from_user.id, f"{message.text()} выберите что вы хотите сделать?", reply_markup="choosebut", parse_mode='HTML')
 
 
-
-
-
-
-    
 
 if __name__ == '__main__':
     executor.start_polling(dp, skip_updates=True)
